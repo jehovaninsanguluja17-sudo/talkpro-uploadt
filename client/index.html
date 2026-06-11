@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TalkPro Connect V2</title>
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#00a884" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main id="authPage" class="auth-page">
+    <section class="auth-card">
+      <div class="brand">
+        <div class="brand-icon">💬</div>
+        <div>
+          <h1>TalkPro Connect V2</h1>
+          <p>Plateforme professionnelle développée par <strong>Jehovani Nsanguluja</strong>.</p>
+        </div>
+      </div>
+      <div class="switch">
+        <button id="showLogin" class="active">Connexion</button>
+        <button id="showRegister">Inscription</button>
+      </div>
+      <form id="authForm">
+        <input id="nameInput" class="register-only hidden" placeholder="Nom complet" />
+        <input id="emailInput" type="email" placeholder="Adresse email" required />
+        <input id="passwordInput" type="password" placeholder="Mot de passe" required />
+        <input id="avatarInput" class="register-only hidden" placeholder="Lien photo de profil (optionnel)" />
+        <button id="authSubmit">Se connecter</button>
+      </form>
+      <div class="admin-default">
+        <strong>Admin par défaut :</strong><br>
+        admin@talkpro.com / Admin@2026
+      </div>
+      <p id="authMessage" class="error"></p>
+    </section>
+  </main>
+
+  <main id="appPage" class="app hidden">
+    <aside class="sidebar">
+      <div class="me-card">
+        <img id="myAvatar" alt="Moi" />
+        <div>
+          <strong id="myName"></strong>
+          <span id="myEmail"></span>
+          <small id="myRole"></small>
+        </div>
+      </div>
+
+      <nav class="tabs">
+        <button class="tab active" data-tab="users">Utilisateurs</button>
+        <button class="tab" data-tab="requests">Demandes <span id="requestCount">0</span></button>
+        <button class="tab" data-tab="friends">Contacts</button>
+        <button class="tab" data-tab="groups">Groupes</button>
+        <button class="tab" data-tab="calls">Appels</button>
+        <button class="tab" data-tab="media">Galerie</button>
+        <button class="tab" data-tab="profile">Profil</button>
+        <button id="adminTab" class="tab hidden" data-tab="admin">Admin</button>
+      </nav>
+
+      <input id="searchInput" class="search" placeholder="Rechercher..." />
+
+      <section id="usersList" class="list"></section>
+      <section id="requestsList" class="list hidden"></section>
+      <section id="friendsList" class="list hidden"></section>
+      <section id="groupsList" class="list hidden"></section>
+      <section id="callsList" class="list hidden"></section>
+      <section id="mediaList" class="list hidden"></section>
+      <section id="profilePanel" class="profile-panel hidden"></section>
+
+      <section id="adminPanel" class="admin-panel hidden">
+        <h3>Tableau de bord</h3>
+        <div id="stats" class="stats"></div>
+        <textarea id="announcementText" placeholder="Annonce à envoyer à tous les utilisateurs..."></textarea>
+        <button id="sendAnnouncement" class="btn-primary full">Envoyer l’annonce</button>
+        <h3>Gestion utilisateurs</h3>
+        <div id="adminUsers"></div>
+      </section>
+
+      <button id="newGroupBtn" class="about-button">Créer un groupe</button>
+      <button id="installBtn" class="about-button hidden">Installer l’application</button>
+      <button id="themeBtn" class="about-button">Mode sombre</button>
+      <button id="notifyBtn" class="about-button">Activer notifications</button>
+      <button id="aboutBtn" class="about-button">À propos du développeur</button>
+      <button id="logoutBtn" class="logout-button">Déconnexion</button>
+    </aside>
+
+    <section class="chat">
+      <header class="chat-header">
+        <div class="chat-user">
+          <img id="chatAvatar" src="https://ui-avatars.com/api/?name=TalkPro&background=00a884&color=fff" alt="Contact" />
+          <div>
+            <strong id="chatName">TalkPro Connect</strong>
+            <span id="chatStatus">Choisissez un contact ou un groupe</span>
+          </div>
+        </div>
+        <div class="chat-actions">
+          <button id="voiceCall">📞</button>
+          <button id="videoCall">🎥</button>
+        </div>
+      </header>
+
+      <div id="emptyState" class="empty">
+        <h2>Bienvenue 👋</h2>
+        <p>Envoyez des demandes, acceptez des contacts, créez des groupes et discutez en temps réel.</p>
+      </div>
+
+      <div id="messages" class="messages hidden"></div>
+
+      <footer class="composer">
+        <button id="emojiBtn">😊</button>
+        <button id="imageBtn">🖼️</button>
+        <input id="fileInput" type="file" hidden accept="image/*,audio/*,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.zip,.rar,.txt" />
+        <button id="recordBtn">🎙️</button>
+        <input id="messageInput" placeholder="Écrire un message..." disabled />
+        <button id="sendBtn" disabled>Envoyer</button>
+      </footer>
+
+      <div id="emojiBox" class="emoji-box hidden">
+        <span>😀</span><span>😂</span><span>😍</span><span>🙏</span><span>👍</span>
+        <span>❤️</span><span>🔥</span><span>🎉</span><span>😇</span><span>👏</span>
+      </div>
+    </section>
+  </main>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-card">
+      <h2 id="modalTitle"></h2>
+      <p id="modalText"></p>
+      <div id="modalExtra"></div>
+      <button id="closeModal">Fermer</button>
+    </div>
+  </div>
+
+
+  <div id="callPanel" class="call-panel hidden">
+    <div class="call-box">
+      <div class="call-top">
+        <div>
+          <strong id="callName">Appel</strong>
+          <span id="callState">Connexion...</span>
+        </div>
+        <button id="closeCallPanel">×</button>
+      </div>
+
+      <div class="video-area">
+        <video id="remoteVideo" autoplay playsinline></video>
+        <video id="localVideo" autoplay playsinline muted></video>
+      </div>
+
+      <div class="call-controls">
+        <button id="acceptCallBtn" class="accept-call hidden">Accepter</button>
+        <button id="rejectCallBtn" class="reject-call hidden">Refuser</button>
+        <button id="muteBtn">🎙️</button>
+        <button id="cameraBtn">📷</button>
+        <button id="endCallBtn" class="end-call">Terminer</button>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
