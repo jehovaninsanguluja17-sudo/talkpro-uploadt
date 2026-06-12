@@ -229,3 +229,425 @@ body.dark .media-card .media-info{color:#cbd5e1}
   display:inline-block;
   margin-left:5px;
 }
+
+
+/* =========================================================
+   V5.1 MOBILE PRO — Interface type WhatsApp mobile
+========================================================= */
+
+.mobile-back-btn{
+  display:none;
+}
+
+/* Tablette et téléphone */
+@media (max-width: 820px){
+
+  html, body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    touch-action:manipulation;
+  }
+
+  body{
+    min-height:100dvh;
+    padding:0;
+    margin:0;
+    background:#ffffff;
+  }
+
+  .app{
+    width:100vw !important;
+    height:100dvh !important;
+    min-height:100dvh !important;
+    display:block !important;
+    margin:0 !important;
+    border-radius:0 !important;
+    overflow:hidden !important;
+    box-shadow:none !important;
+    position:relative !important;
+  }
+
+  .sidebar{
+    position:absolute !important;
+    inset:0 !important;
+    width:100vw !important;
+    height:100dvh !important;
+    z-index:5 !important;
+    border:0 !important;
+    display:flex !important;
+    background:#ffffff !important;
+    transform:translateX(0);
+    transition:transform .25s ease;
+  }
+
+  body.dark .sidebar{
+    background:#0f172a !important;
+  }
+
+  .chat{
+    position:absolute !important;
+    inset:0 !important;
+    width:100vw !important;
+    height:100dvh !important;
+    min-height:100dvh !important;
+    z-index:10 !important;
+    transform:translateX(100%);
+    transition:transform .25s ease;
+    display:grid !important;
+    grid-template-rows:64px 1fr auto !important;
+  }
+
+  body.mobile-chat-open .sidebar{
+    transform:translateX(-25%);
+  }
+
+  body.mobile-chat-open .chat{
+    transform:translateX(0);
+  }
+
+  .me-card{
+    height:72px !important;
+    padding:10px 14px !important;
+    flex-shrink:0;
+  }
+
+  .me-card img{
+    width:46px !important;
+    height:46px !important;
+  }
+
+  .tabs{
+    display:flex !important;
+    overflow-x:auto !important;
+    gap:8px !important;
+    padding:9px 10px !important;
+    flex-shrink:0;
+    scrollbar-width:none;
+  }
+
+  .tabs::-webkit-scrollbar{
+    display:none;
+  }
+
+  .tab{
+    min-width:max-content !important;
+    padding:10px 13px !important;
+    border-radius:999px !important;
+    font-size:13px !important;
+    white-space:nowrap !important;
+  }
+
+  .search{
+    margin:8px 10px !important;
+    padding:13px 15px !important;
+    border-radius:999px !important;
+    font-size:16px !important;
+    flex-shrink:0;
+  }
+
+  .list{
+    flex:1 !important;
+    overflow-y:auto !important;
+    -webkit-overflow-scrolling:touch;
+    padding-bottom:90px !important;
+  }
+
+  .item{
+    padding:13px 14px !important;
+    min-height:72px !important;
+  }
+
+  .item img{
+    width:52px !important;
+    height:52px !important;
+  }
+
+  .item-actions button,
+  .item-actions .badge{
+    font-size:12px !important;
+    padding:8px 10px !important;
+  }
+
+  .about-button,
+  .logout-button{
+    margin:5px 10px !important;
+    padding:11px !important;
+    font-size:13px !important;
+  }
+
+  .chat-header{
+    height:64px !important;
+    min-height:64px !important;
+    padding:8px 10px !important;
+    display:flex !important;
+    gap:8px !important;
+    align-items:center !important;
+    position:relative;
+    z-index:3;
+  }
+
+  .mobile-back-btn{
+    display:grid !important;
+    place-items:center !important;
+    width:38px !important;
+    height:38px !important;
+    min-width:38px !important;
+    border-radius:50% !important;
+    background:transparent !important;
+    color:inherit !important;
+    font-size:26px !important;
+    box-shadow:none !important;
+  }
+
+  .chat-user{
+    min-width:0 !important;
+    flex:1 !important;
+  }
+
+  .chat-user img{
+    width:42px !important;
+    height:42px !important;
+  }
+
+  .chat-user strong{
+    display:block !important;
+    max-width:145px !important;
+    overflow:hidden !important;
+    text-overflow:ellipsis !important;
+    white-space:nowrap !important;
+    font-size:15px !important;
+  }
+
+  .chat-user span{
+    max-width:160px !important;
+    overflow:hidden !important;
+    text-overflow:ellipsis !important;
+    white-space:nowrap !important;
+    font-size:12px !important;
+  }
+
+  .chat-actions{
+    gap:6px !important;
+  }
+
+  .chat-actions button{
+    width:38px !important;
+    height:38px !important;
+    font-size:17px !important;
+  }
+
+  .empty{
+    padding:24px !important;
+  }
+
+  .messages{
+    height:100% !important;
+    padding:12px 10px 14px !important;
+    overflow-y:auto !important;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  .bubble,
+  .message{
+    max-width:86% !important;
+    font-size:15px !important;
+    padding:10px 12px !important;
+    border-radius:16px !important;
+  }
+
+  .bubble img,
+  .message img{
+    max-width:230px !important;
+    height:auto !important;
+  }
+
+  .composer{
+    min-height:64px !important;
+    padding:8px calc(8px + env(safe-area-inset-right)) calc(8px + env(safe-area-inset-bottom)) calc(8px + env(safe-area-inset-left)) !important;
+    gap:6px !important;
+    position:relative;
+    z-index:4;
+  }
+
+  .composer button{
+    width:40px !important;
+    height:40px !important;
+    min-width:40px !important;
+    font-size:17px !important;
+  }
+
+  .composer input{
+    min-width:0 !important;
+    height:42px !important;
+    padding:11px 14px !important;
+    font-size:16px !important;
+    border-radius:999px !important;
+  }
+
+  #sendBtn{
+    width:auto !important;
+    min-width:72px !important;
+    padding:0 12px !important;
+    font-size:13px !important;
+  }
+
+  .emoji-box{
+    left:8px !important;
+    right:8px !important;
+    bottom:72px !important;
+    grid-template-columns:repeat(5, 1fr) !important;
+    width:auto !important;
+  }
+
+  .media-grid{
+    grid-template-columns:1fr 1fr !important;
+    padding:10px !important;
+  }
+
+  .media-card img{
+    height:115px !important;
+  }
+
+  .profile-panel,
+  .admin-panel{
+    padding:10px !important;
+    overflow-y:auto !important;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  .stats{
+    grid-template-columns:1fr 1fr !important;
+  }
+
+  .modal-card{
+    width:92vw !important;
+    max-height:86dvh !important;
+    overflow-y:auto !important;
+    padding:22px !important;
+  }
+
+  .call-panel{
+    padding:0 !important;
+  }
+
+  .call-box{
+    width:100vw !important;
+    height:100dvh !important;
+    border-radius:0 !important;
+    display:grid !important;
+    grid-template-rows:64px 1fr auto !important;
+  }
+
+  .call-top{
+    height:64px !important;
+    padding:10px 14px !important;
+  }
+
+  .video-area{
+    height:auto !important;
+    min-height:0 !important;
+  }
+
+  #remoteVideo{
+    width:100% !important;
+    height:100% !important;
+    object-fit:cover !important;
+  }
+
+  #localVideo{
+    width:112px !important;
+    height:150px !important;
+    right:12px !important;
+    bottom:12px !important;
+    border-radius:16px !important;
+  }
+
+  .call-controls{
+    padding:12px 10px calc(12px + env(safe-area-inset-bottom)) !important;
+    gap:10px !important;
+  }
+
+  .call-controls button{
+    height:46px !important;
+    min-width:48px !important;
+    border-radius:999px !important;
+  }
+}
+
+/* Très petits téléphones */
+@media (max-width: 420px){
+
+  .chat-user strong{
+    max-width:115px !important;
+  }
+
+  .chat-user span{
+    max-width:125px !important;
+  }
+
+  .chat-actions button{
+    width:35px !important;
+    height:35px !important;
+    font-size:15px !important;
+  }
+
+  .composer{
+    gap:4px !important;
+  }
+
+  .composer button{
+    width:36px !important;
+    height:36px !important;
+    min-width:36px !important;
+  }
+
+  #sendBtn{
+    min-width:62px !important;
+    padding:0 9px !important;
+    font-size:12px !important;
+  }
+
+  .bubble,
+  .message{
+    max-width:90% !important;
+    font-size:14px !important;
+  }
+
+  .media-grid{
+    grid-template-columns:1fr !important;
+  }
+
+  .stats{
+    grid-template-columns:1fr !important;
+  }
+}
+
+/* Paysage mobile */
+@media (max-width: 920px) and (orientation: landscape){
+  .me-card{
+    height:58px !important;
+  }
+
+  .chat-header{
+    height:56px !important;
+    min-height:56px !important;
+  }
+
+  .chat{
+    grid-template-rows:56px 1fr auto !important;
+  }
+
+  .composer{
+    min-height:54px !important;
+  }
+
+  .call-box{
+    grid-template-rows:54px 1fr 62px !important;
+  }
+
+  #localVideo{
+    width:135px !important;
+    height:90px !important;
+  }
+}

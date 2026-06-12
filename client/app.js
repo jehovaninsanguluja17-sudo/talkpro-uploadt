@@ -235,6 +235,7 @@ window.openPrivate = async id => {
   const u = users.find(x=>x.id===id);
   active = {type:"private", id, data:u};
   prepareChat(u.name, u.avatar || avatar(u.name), u.online ? "En ligne" : formatLastSeen(u.lastSeen));
+  openMobileChat();
   const data = await api(`/api/messages/private/${id}`, {headers:headers()});
   data.messages.forEach(m=>appendMessage(m));
   socket.emit("message:read", { from:id });
@@ -244,6 +245,7 @@ window.openGroup = async id => {
   const g = groups.find(x=>x._id===id);
   active = {type:"group", id, data:g};
   prepareChat(g.name, g.avatar || avatar(g.name), `${g.members.length} membre(s)`);
+  openMobileChat();
   const data = await api(`/api/messages/group/${id}`, {headers:headers()});
   data.messages.forEach(m=>appendMessage(m, true));
 };
@@ -661,3 +663,42 @@ $("installBtn").onclick = async () => {
 
 $("logoutBtn").onclick = () => { localStorage.removeItem("talkpro_v2_token"); localStorage.removeItem("talkpro_v2_user"); location.reload(); };
 function escapeHtml(str){ return String(str).replace(/[&<>"']/g, m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m])); }
+
+
+/* =========================
+   V5.1 MOBILE PRO
+========================= */
+function isMobileView(){
+  return window.matchMedia("(max-width: 820px)").matches;
+}
+
+function openMobileChat(){
+  if(isMobileView()){
+    document.body.classList.add("mobile-chat-open");
+  }
+}
+
+function closeMobileChat(){
+  document.body.classList.remove("mobile-chat-open");
+}
+
+window.addEventListener("resize", () => {
+  if(!isMobileView()) document.body.classList.remove("mobile-chat-open");
+});
+
+document.addEventListener("click", (e) => {
+  const back = e.target.closest("#mobileBackBtn");
+  if(back) closeMobileChat();
+});
+
+function ensureMobileBackButton(){
+  const header = document.querySelector(".chat-header");
+  if(!header || document.getElementById("mobileBackBtn")) return;
+  const btn = document.createElement("button");
+  btn.id = "mobileBackBtn";
+  btn.className = "mobile-back-btn";
+  btn.innerHTML = "←";
+  header.prepend(btn);
+}
+
+ensureMobileBackButton();

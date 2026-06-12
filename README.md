@@ -201,3 +201,20 @@ Pour une vraie mise en ligne :
 - Domaine : talkproconnect.com
 - HTTPS obligatoire pour WebRTC, notifications et PWA
 - Serveur TURN recommandé pour appels fiables
+
+
+## V5.1 Mobile Pro
+
+Cette version ajoute une interface mobile optimisée :
+
+- Interface type WhatsApp mobile
+- Liste des contacts plein écran
+- Discussion plein écran
+- Bouton retour mobile
+- Barre de message adaptée au clavier téléphone
+- Appels audio/vidéo plein écran
+- Galerie, profil et admin adaptés mobile
+- Support iPhone avec safe-area
+- Support Android/PWA amélioré
+
+Après modification, envoyer sur GitHub puis Render redéploiera automatiquement.
